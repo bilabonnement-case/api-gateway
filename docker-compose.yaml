@@ -1,8 +1,9 @@
 version: '3.8'
 
 services:
+  # API Gateway
   api-gateway:
-    image: dit-brugernavn/api-gateway:latest
+    image: birklauritzen/api-gateway:latest
     ports:
       - "5000:8000"  # Host port 5000 -> Container port 8000
     depends_on:
@@ -12,27 +13,32 @@ services:
       - kunde-service
       - skade-service
 
+  # Abonnement Service
   abonnement-service:
-    image: dit-brugernavn/abonnement-service:latest
+    image: birklauritzen/abonnement-service:latest
     ports:
       - "5001:5001"
 
+  # Fakturering Service
   fakturering-service:
-    image: dit-brugernavn/fakturering-service:latest
+    image: birklauritzen/fakturering-service:latest
     ports:
       - "5002:5002"
 
+  # Fleet Service
   fleet-service:
-    image: dit-brugernavn/fleet-service:latest
+    image: birklauritzen/fleet-service:latest
     ports:
       - "5003:5003"
 
+  # Kunde Service
   kunde-service:
-    image: dit-brugernavn/kunde-service:latest
+    image: birklauritzen/kunde-service:latest
     ports:
       - "5004:5004"
 
+  # Skade Service
   skade-service:
-    image: dit-brugernavn/skade-service:latest
+    image: birklauritzen/skade-service:latest
     ports:
       - "5005:5005"

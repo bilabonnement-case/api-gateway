@@ -1,0 +1,38 @@
+version: '3.8'
+
+services:
+  api-gateway:
+    image: dit-brugernavn/api-gateway:latest
+    ports:
+      - "5000:8000"  # Host port 5000 -> Container port 8000
+    depends_on:
+      - abonnement-service
+      - fakturering-service
+      - fleet-service
+      - kunde-service
+      - skade-service
+
+  abonnement-service:
+    image: dit-brugernavn/abonnement-service:latest
+    ports:
+      - "5001:5001"
+
+  fakturering-service:
+    image: dit-brugernavn/fakturering-service:latest
+    ports:
+      - "5002:5002"
+
+  fleet-service:
+    image: dit-brugernavn/fleet-service:latest
+    ports:
+      - "5003:5003"
+
+  kunde-service:
+    image: dit-brugernavn/kunde-service:latest
+    ports:
+      - "5004:5004"
+
+  skade-service:
+    image: dit-brugernavn/skade-service:latest
+    ports:
+      - "5005:5005"

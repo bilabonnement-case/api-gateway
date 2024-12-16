@@ -1,0 +1,63 @@
+tags:
+  - Kunde
+summary: Proxy Create Customer
+description: Proxies the request to the Kunde Service's `/create_customer` endpoint.
+requestBody:
+  required: true
+  content:
+    application/json:
+      schema:
+        type: object
+        properties:
+          navn:
+            type: string
+            example: "John Doe"
+          adresse:
+            type: string
+            example: "123 Main St, Copenhagen"
+          telefon:
+            type: integer
+            example: 12345678
+          email:
+            type: string
+            example: "johndoe@example.com"
+          CPRnummer:
+            type: string
+            example: "123456-7890"
+          kreditvurdering_status:
+            type: string
+            example: "OK"
+responses:
+  '201':
+    description: Customer created successfully
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            message:
+              type: string
+              example: Customer created
+            customer_id:
+              type: integer
+              example: 1
+  '400':
+    description: Invalid input
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            error:
+              type: string
+              example: Missing required fields
+  '500':
+    description: Internal server error
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            error:
+              type: string
+              example: Internal server error

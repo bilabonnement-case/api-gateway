@@ -1,0 +1,37 @@
+tags:
+  - General
+summary: API Gateway Home Endpoint
+description: Provides information about the API Gateway and the connected microservices, including their available endpoints and status.
+responses:
+  '200':
+    description: Successfully retrieved gateway and service information
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            message:
+              type: string
+              example: "API Gateway is running"
+            services:
+              type: object
+              additionalProperties:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: "Running"
+                  available_endpoints:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        path:
+                          type: string
+                          example: "/api/abonnement/create_subscription"
+                        method:
+                          type: string
+                          example: "POST"
+                        description:
+                          type: string
+                          example: "Create a new subscription"

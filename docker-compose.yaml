@@ -1,44 +1,64 @@
 version: '3.8'
 
 services:
-  # API Gateway
   api-gateway:
-    image: birklauritzen/api-gateway:latest
+    build:
+      context: ./api-gateway  # Set build context to the api-gateway folder
+      dockerfile: Dockerfile  # Explicitly point to the Dockerfile
     ports:
       - "5000:8000"  # Host port 5000 -> Container port 8000
     depends_on:
       - abonnement-service
-      - fakturering-service
+      - faktura-service
       - fleet-service
       - kunde-service
       - skade-service
+    volumes:
+      - ./api-gateway/swagger:/app/swagger  # Ensure swagger directory is mounted
 
   # Abonnement Service
   abonnement-service:
     image: birklauritzen/abonnement-service:latest
     ports:
       - "5001:5001"
+    volumes:
+      - abonnement-data:/app/data  # Persist subscription data
 
-  # Fakturering Service
-  fakturering-service:
-    image: birklauritzen/fakturering-service:latest
+  # Faktura Service
+  faktura-service:
+    image: birklauritzen/faktura-service:latest
     ports:
       - "5002:5002"
+    volumes:
+      - faktura-data:/app/data  # Persist invoice data
 
   # Fleet Service
   fleet-service:
     image: birklauritzen/fleet-service:latest
     ports:
       - "5003:5003"
+    volumes:
+      - fleet-data:/app/data  # Persist fleet data
 
   # Kunde Service
   kunde-service:
     image: birklauritzen/kunde-service:latest
     ports:
       - "5004:5004"
+    volumes:
+      - kunde-data:/app/data  # Persist customer data
 
   # Skade Service
   skade-service:
     image: birklauritzen/skade-service:latest
     ports:
       - "5005:5005"
+    volumes:
+      - skade-data:/app/data  # Persist damage reports
+
+volumes:
+  abonnement-data:
+  faktura-data:
+  fleet-data:
+  kunde-data:
+  skade-data:

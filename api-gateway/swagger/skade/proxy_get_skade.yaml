@@ -1,0 +1,61 @@
+tags:
+  - Skade
+summary: Proxy Get Skade
+description: Proxies the request to the Skade Service's `/get_skade/{skade_id}` endpoint to retrieve a damage report by its ID.
+parameters:
+  - name: skade_id
+    in: path
+    required: true
+    schema:
+      type: integer
+      example: 1
+    description: ID of the damage report to retrieve.
+responses:
+  '200':
+    description: Skade retrieved successfully
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            skade_id:
+              type: integer
+              example: 1
+            bil_id:
+              type: integer
+              example: 101
+            stelnummer:
+              type: string
+              example: "WBA1234567890"
+            beskrivelse:
+              type: string
+              example: "Ridse i højre dør"
+            omkostning:
+              type: number
+              example: 1500.75
+            forsikringsstatus:
+              type: string
+              example: "Under behandling"
+            admin_id:
+              type: integer
+              example: 1
+  '404':
+    description: Skade not found
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            error:
+              type: string
+              example: Skade not found
+  '500':
+    description: Internal server error
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            error:
+              type: string
+              example:

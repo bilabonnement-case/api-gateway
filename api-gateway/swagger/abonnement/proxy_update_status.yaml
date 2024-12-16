@@ -1,0 +1,68 @@
+tags:
+  - Abonnement
+summary: Proxy Update Subscription Status
+description: Updates the subscription status in the Abonnement Service.
+parameters:
+  - name: abonnement_id
+    in: path
+    required: true
+    description: The ID of the subscription to update.
+    schema:
+      type: integer
+      example: 1
+  - in: body
+    name: body
+    required: true
+    schema:
+      type: object
+      properties:
+        status:
+          type: string
+          enum:
+            - Active
+            - Inactive
+            - Terminated
+          description: The new status for the subscription.
+      example:
+        status: Opsagt
+responses:
+  '200':
+    description: Subscription status updated successfully.
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            message:
+              type: string
+              example: Status updated
+  '400':
+    description: Invalid input or status.
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            error:
+              type: string
+              example: Invalid status
+  '404':
+    description: Subscription not found.
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            error:
+              type: string
+              example: Subscription not found
+  '500':
+    description: Internal server error.
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            error:
+              type: string
+              example: An error occurred

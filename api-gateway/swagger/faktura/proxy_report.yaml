@@ -1,0 +1,34 @@
+tags:
+  - Faktura
+summary: Proxy Invoice Report
+description: Proxies the request to the Faktura Service's `/report` endpoint.
+responses:
+  '200':
+    description: Invoice report generated successfully
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            TotalBetalt:
+              type: number
+              example: 15000.75
+              description: Total amount paid.
+            UbetalteFakturaer:
+              type: integer
+              example: 10
+              description: Number of unpaid invoices.
+            ForfaldneFakturaer:
+              type: integer
+              example: 2
+              description: Number of overdue invoices.
+  '500':
+    description: Internal server error
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            error:
+              type: string
+              example: Internal server error

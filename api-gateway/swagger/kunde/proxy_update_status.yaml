@@ -1,0 +1,55 @@
+tags:
+  - Kunde
+summary: Proxy Update Customer Status
+description: Proxies the request to the Kunde Service's `/update_status/{customer_id}` endpoint to update the status of a customer.
+parameters:
+  - name: customer_id
+    in: path
+    required: true
+    schema:
+      type: integer
+      example: 1
+    description: ID of the customer to update.
+requestBody:
+  required: true
+  content:
+    application/json:
+      schema:
+        type: object
+        properties:
+          kreditvurdering_status:
+            type: string
+            enum:
+              - OK
+              - RKI
+            example: RKI
+responses:
+  '200':
+    description: Customer status updated successfully
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            message:
+              type: string
+              example: Status updated
+  '400':
+    description: Invalid input
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            error:
+              type: string
+              example: Invalid status
+  '404':
+    description: Customer not found
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            error:
+              type

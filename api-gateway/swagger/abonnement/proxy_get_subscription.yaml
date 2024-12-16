@@ -1,0 +1,52 @@
+tags:
+  - Abonnement
+summary: Proxy Get Subscription
+description: Proxies the request to the Abonnement Service's `/get_subscription/{abonnement_id}` endpoint.
+parameters:
+  - name: abonnement_id
+    in: path
+    required: true
+    schema:
+      type: integer
+      example: 1
+    description: The ID of the subscription to retrieve.
+responses:
+  '200':
+    description: Subscription details retrieved successfully
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            abonnement_id:
+              type: integer
+              example: 1
+            kunde_id:
+              type: integer
+              example: 123
+            bil_id:
+              type: integer
+              example: 5
+            status:
+              type: string
+              example: Active
+  '404':
+    description: Subscription not found
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            error:
+              type: string
+              example: Subscription not found
+  '500':
+    description: Internal server error
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            error:
+              type: string
+              example: An error occurred

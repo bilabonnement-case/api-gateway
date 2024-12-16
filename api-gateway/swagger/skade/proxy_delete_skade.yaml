@@ -1,0 +1,43 @@
+tags:
+  - Skade
+summary: Proxy Delete Skade
+description: Proxies the request to the Skade Service's `/delete_skade/{skade_id}` endpoint to delete a damage report by its ID.
+parameters:
+  - name: skade_id
+    in: path
+    required: true
+    schema:
+      type: integer
+      example: 1
+    description: ID of the damage report to delete.
+responses:
+  '200':
+    description: Skade deleted successfully
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            message:
+              type: string
+              example: Skade deleted
+  '404':
+    description: Skade not found
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            error:
+              type: string
+              example: Skade not found
+  '500':
+    description: Internal server error
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            error:
+              type: string
+              example: Internal server error

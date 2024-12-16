@@ -4,10 +4,13 @@ FROM python:3.11
 # Set working directory
 WORKDIR /app
 
-# Copy files
+# Copy application files and Swagger documentation
 COPY api_gateway.py .
 COPY requirements.txt .
+COPY swagger/ ./swagger/
 
+# Create a directory for the database
+RUN mkdir -p /app/data
 # Install dependencies
 RUN pip install --no-cache-dir -r requirements.txt
 

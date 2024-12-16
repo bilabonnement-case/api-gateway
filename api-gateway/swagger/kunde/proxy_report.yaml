@@ -1,0 +1,31 @@
+tags:
+  - Kunde
+summary: Proxy Customer Report
+description: Proxies the request to the Kunde Service's `/report` endpoint, which provides summary statistics about customers.
+responses:
+  '200':
+    description: Customer report generated successfully
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            total_customers:
+              type: integer
+              example: 500
+            active_customers:
+              type: integer
+              example: 450
+            inactive_customers:
+              type: integer
+              example: 50
+  '500':
+    description: Internal server error
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            error:
+              type: string
+              example: Internal server error

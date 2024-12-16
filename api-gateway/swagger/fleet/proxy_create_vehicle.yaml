@@ -1,0 +1,75 @@
+tags:
+  - Fleet
+summary: Proxy Create Vehicle
+description: Proxies the request to the Fleet Service's `/create_vehicle` endpoint.
+requestBody:
+  required: true
+  content:
+    application/json:
+      schema:
+        type: object
+        properties:
+          stelnummer:
+            type: string
+            example: "WBA1234567890"
+          abonnement_id:
+            type: integer
+            example: 123
+          mærke:
+            type: string
+            example: "BMW"
+          model:
+            type: string
+            example: "X5"
+          månedlig_pris:
+            type: number
+            example: 5999.99
+          kilometer_graense:
+            type: integer
+            example: 20000
+          kilometerafstand:
+            type: integer
+            example: 1500
+          registreringsnummer:
+            type: string
+            example: "AB12345"
+          status:
+            type: string
+            example: "Available"
+          admin_id:
+            type: integer
+            example: 1
+responses:
+  '201':
+    description: Vehicle created successfully
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            message:
+              type: string
+              example: Vehicle created
+            vehicle_id:
+              type: integer
+              example: 1
+  '400':
+    description: Invalid input
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            error:
+              type: string
+              example: Missing required fields
+  '500':
+    description: Internal server error
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            error:
+              type: string
+              example: Internal server error

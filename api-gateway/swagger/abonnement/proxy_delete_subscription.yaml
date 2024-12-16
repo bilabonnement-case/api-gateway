@@ -1,0 +1,43 @@
+tags:
+  - Abonnement
+summary: Proxy Delete Subscription
+description: Proxies the request to the Abonnement Service's `/delete_subscription/{abonnement_id}` endpoint.
+parameters:
+  - name: abonnement_id
+    in: path
+    required: true
+    schema:
+      type: integer
+      example: 1
+    description: The ID of the subscription to delete.
+responses:
+  '200':
+    description: Subscription successfully deleted
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            message:
+              type: string
+              example: Subscription deleted
+  '404':
+    description: Subscription not found
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            error:
+              type: string
+              example: Subscription not found
+  '500':
+    description: Internal server error
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            error:
+              type: string
+              example: An error occurred

@@ -1,0 +1,70 @@
+tags:
+  - Skade
+summary: Proxy Update Skade
+description: Proxies the request to the Skade Service's `/update_skade/{skade_id}` endpoint to update an existing damage report.
+parameters:
+  - name: skade_id
+    in: path
+    required: true
+    schema:
+      type: integer
+      example: 1
+    description: ID of the damage report to update.
+requestBody:
+  required: true
+  content:
+    application/json:
+      schema:
+        type: object
+        properties:
+          beskrivelse:
+            type: string
+            example: "Updated description of damage"
+          omkostning:
+            type: number
+            example: 2000.00
+          forsikringsstatus:
+            type: string
+            example: "Afsluttet"
+responses:
+  '200':
+    description: Skade updated successfully
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            message:
+              type: string
+              example: Skade updated
+  '400':
+    description: Invalid input
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            error:
+              type: string
+              example: Invalid fields
+  '404':
+    description: Skade not found
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            error:
+              type: string
+              example: Skade not found
+  '500':
+    description: Internal server error
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            error:
+              type: string
+              example: Internal server error
+              

@@ -1,0 +1,56 @@
+tags:
+  - Kunde
+summary: Proxy til Kunde Service
+description: Proxies requests to the Kunde Service. Supports any endpoint within the microservice.
+parameters:
+  - name: endpoint
+    in: path
+    required: true
+    description: The specific endpoint in the Kunde Service to proxy (e.g., create_customer, update_status).
+    schema:
+      type: string
+  - name: body
+    in: body
+    required: false
+    description: The JSON body for the request (if applicable).
+    schema:
+      type: object
+responses:
+  '200':
+    description: Success response from the Kunde Service.
+    content:
+      application/json:
+        schema:
+          type: object
+          example:
+            message: "Success"
+  '400':
+    description: Bad request sent to the Kunde Service.
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            error:
+              type: string
+              example: "Bad request"
+  '404':
+    description: Resource not found in the Kunde Service.
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            error:
+              type: string
+              example: "Not found"
+  '500':
+    description: Internal server error occurred.
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            error:
+              type: string
+              example: "Internal server error"

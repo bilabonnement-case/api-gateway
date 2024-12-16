@@ -1,0 +1,60 @@
+tags:
+  - Faktura
+summary: Proxy Get Invoice
+description: Proxies the request to the Faktura Service's `/get_invoice/{faktura_id}` endpoint.
+parameters:
+  - name: faktura_id
+    in: path
+    required: true
+    schema:
+      type: integer
+      example: 1
+responses:
+  '200':
+    description: Invoice details retrieved successfully
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            faktura_id:
+              type: integer
+              example: 1
+            abonnements_id:
+              type: integer
+              example: 123
+            kunde_id:
+              type: integer
+              example: 456
+            beloeb:
+              type: number
+              example: 1200.50
+            betalingsdato:
+              type: string
+              example: "2024-12-15"
+            status:
+              type: string
+              example: "Ikke betalt"
+            oprettet_tidspunkt:
+              type: string
+              example: "2024-12-01T12:00:00"
+  '404':
+    description: Invoice not found
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            error:
+              type: string
+              example: Invoice not found
+  '500':
+    description: Internal server error
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            error:
+              type: string
+              example: Internal server error

@@ -1,0 +1,58 @@
+tags:
+  - Abonnement
+summary: Proxy Create Subscription
+description: Proxies the request to the Abonnement Service's `/create_subscription` endpoint.
+parameters:
+  - in: body
+    name: body
+    required: true
+    schema:
+      type: object
+      properties:
+        kunde_id:
+          type: integer
+          example: 123
+        bil_id:
+          type: integer
+          example: 5
+        start_dato:
+          type: string
+          format: date
+          example: "2024-01-01"
+        slut_dato:
+          type: string
+          format: date
+          example: "2024-12-31"
+        månedlig_pris:
+          type: number
+          example: 499.99
+        kilometer_graense:
+          type: integer
+          example: 1500
+        kontrakt_periode:
+          type: string
+          example: "12 months"
+responses:
+  '201':
+    description: Subscription created successfully
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            message:
+              type: string
+              example: Subscription created
+            abonnement_id:
+              type: integer
+              example: 1
+  '500':
+    description: Internal server error
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            error:
+              type: string
+              example: Internal server error

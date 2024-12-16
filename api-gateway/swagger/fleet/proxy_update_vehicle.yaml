@@ -1,0 +1,69 @@
+tags:
+  - Fleet
+summary: Proxy Update Vehicle
+description: Proxies the request to the Fleet Service's `/update_vehicle/{vehicle_id}` endpoint.
+parameters:
+  - name: vehicle_id
+    in: path
+    required: true
+    schema:
+      type: integer
+      example: 1
+    description: ID of the vehicle to update.
+requestBody:
+  required: true
+  content:
+    application/json:
+      schema:
+        type: object
+        properties:
+          månedlig_pris:
+            type: number
+            example: 4999.99
+          kilometer_graense:
+            type: integer
+            example: 25000
+          status:
+            type: string
+            example: "Unavailable"
+responses:
+  '200':
+    description: Vehicle updated successfully
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            message:
+              type: string
+              example: Vehicle updated
+  '400':
+    description: Invalid input
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            error:
+              type: string
+              example: Invalid input
+  '404':
+    description: Vehicle not found
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            error:
+              type: string
+              example: Vehicle not found
+  '500':
+    description: Internal server error
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            error:
+              type: string
+              example: Internal server error

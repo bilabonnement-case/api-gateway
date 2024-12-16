@@ -1,0 +1,66 @@
+tags:
+  - Skade
+summary: Proxy Create Skade
+description: Proxies the request to the Skade Service's `/create_skade` endpoint to create a new damage report.
+requestBody:
+  required: true
+  content:
+    application/json:
+      schema:
+        type: object
+        properties:
+          bil_id:
+            type: integer
+            example: 101
+            description: ID for the associated car.
+          stelnummer:
+            type: string
+            example: "WBA1234567890"
+            description: Car's chassis number.
+          beskrivelse:
+            type: string
+            example: "Ridse i højre dør"
+            description: Damage description.
+          omkostning:
+            type: number
+            example: 1500.75
+            description: Estimated repair cost.
+          forsikringsstatus:
+            type: string
+            example: "Under behandling"
+            description: Insurance claim status.
+          admin_id:
+            type: integer
+            example: 1
+            description: Admin ID managing the report.
+responses:
+  '201':
+    description: Skade created successfully
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            message:
+              type: string
+              example: Skade created
+  '400':
+    description: Invalid input
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            error:
+              type: string
+              example: Missing or invalid fields
+  '500':
+    description: Internal server error
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            error:
+              type: string
+              example: Internal server error

@@ -1,0 +1,59 @@
+tags:
+  - Faktura
+summary: Proxy Create Invoice
+description: Proxies the request to the Faktura Service's `/create_invoice` endpoint.
+requestBody:
+  required: true
+  content:
+    application/json:
+      schema:
+        type: object
+        properties:
+          abonnements_id:
+            type: integer
+            example: 123
+          kunde_id:
+            type: integer
+            example: 456
+          beloeb:
+            type: number
+            format: float
+            example: 1200.50
+          betalingsdato:
+            type: string
+            format: date
+            example: "2024-12-15"
+responses:
+  '201':
+    description: Invoice successfully created
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            message:
+              type: string
+              example: Invoice created
+            faktura_id:
+              type: integer
+              example: 1
+  '400':
+    description: Invalid input
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            error:
+              type: string
+              example: Missing required fields
+  '500':
+    description: Internal server error
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            error:
+              type: string
+              example: Internal server error

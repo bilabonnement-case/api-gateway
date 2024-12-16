@@ -1,0 +1,68 @@
+tags:
+  - Faktura
+summary: Proxy Update Invoice Status
+description: Proxies the request to the Faktura Service's `/update_status/{faktura_id}` endpoint.
+parameters:
+  - name: faktura_id
+    in: path
+    required: true
+    schema:
+      type: integer
+      example: 1
+    description: The ID of the invoice to update.
+requestBody:
+  required: true
+  content:
+    application/json:
+      schema:
+        type: object
+        properties:
+          status:
+            type: string
+            enum:
+              - Ikke betalt
+              - Betalt
+              - Forfalden
+            example: Betalt
+            description: The new status for the invoice.
+responses:
+  '200':
+    description: Invoice status updated successfully
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            message:
+              type: string
+              example: Status updated
+  '400':
+    description: Invalid input or status
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            error:
+              type: string
+              example: Invalid status
+  '404':
+    description: Invoice not found
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            error:
+              type: string
+              example: Invoice not found
+  '500':
+    description: Internal server error
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            error:
+              type: string
+              example: Internal server error

@@ -1,0 +1,43 @@
+tags:
+  - Fleet
+summary: Proxy Delete Vehicle
+description: Proxies the request to the Fleet Service's `/delete_vehicle/{vehicle_id}` endpoint.
+parameters:
+  - name: vehicle_id
+    in: path
+    required: true
+    schema:
+      type: integer
+      example: 1
+    description: ID of the vehicle to delete.
+responses:
+  '200':
+    description: Vehicle deleted successfully
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            message:
+              type: string
+              example: Vehicle deleted
+  '404':
+    description: Vehicle not found
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            error:
+              type: string
+              example: Vehicle not found
+  '500':
+    description: Internal server error
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            error:
+              type: string
+              example: Internal server error

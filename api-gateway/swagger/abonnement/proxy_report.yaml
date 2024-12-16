@@ -1,0 +1,34 @@
+tags:
+  - Abonnement
+summary: Proxy Subscription Report
+description: Proxies the request to the Abonnement Service's `/report` endpoint, which generates a summary of subscriptions.
+responses:
+  '200':
+    description: Subscription report generated successfully
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            ActiveSubscriptions:
+              type: integer
+              example: 10
+              description: Number of active subscriptions.
+            InactiveSubscriptions:
+              type: integer
+              example: 5
+              description: Number of inactive subscriptions.
+            TerminatedSubscriptions:
+              type: integer
+              example: 2
+              description: Number of terminated subscriptions.
+  '500':
+    description: Internal server error
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            error:
+              type: string
+              example: An error occurred

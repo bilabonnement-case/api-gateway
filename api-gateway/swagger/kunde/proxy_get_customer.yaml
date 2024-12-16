@@ -1,0 +1,61 @@
+tags:
+  - Kunde
+summary: Proxy Get Customer
+description: Proxies the request to the Kunde Service's `/get_customer/{customer_id}` endpoint.
+parameters:
+  - name: customer_id
+    in: path
+    required: true
+    schema:
+      type: integer
+      example: 1
+    description: ID of the customer to retrieve.
+responses:
+  '200':
+    description: Customer details retrieved successfully
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            kunde_id:
+              type: integer
+              example: 1
+            navn:
+              type: string
+              example: "John Doe"
+            adresse:
+              type: string
+              example: "123 Main St, Copenhagen"
+            telefon:
+              type: integer
+              example: 12345678
+            email:
+              type: string
+              example: "johndoe@example.com"
+            CPRnummer:
+              type: string
+              example: "123456-7890"
+            kreditvurdering_status:
+              type: string
+              example: "OK"
+  '404':
+    description: Customer not found
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            error:
+              type: string
+              example: Customer not found
+  '500':
+    description: Internal server error
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            error:
+              type: string
+              example: Internal server error

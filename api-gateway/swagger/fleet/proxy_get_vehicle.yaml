@@ -1,0 +1,58 @@
+tags:
+  - Fleet
+summary: Proxy Get Vehicle
+description: Proxies the request to the Fleet Service's `/get_vehicle/{vehicle_id}` endpoint.
+parameters:
+  - name: vehicle_id
+    in: path
+    required: true
+    schema:
+      type: integer
+      example: 1
+    description: ID of the vehicle to retrieve.
+responses:
+  '200':
+    description: Vehicle details retrieved successfully
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            vehicle_id:
+              type: integer
+              example: 1
+            stelnummer:
+              type: string
+              example: "WBA1234567890"
+            mærke:
+              type: string
+              example: "BMW"
+            model:
+              type: string
+              example: "X5"
+            registreringsnummer:
+              type: string
+              example: "AB12345"
+            status:
+              type: string
+              example: "Available"
+  '404':
+    description: Vehicle not found
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            error:
+              type: string
+              example: Vehicle not found
+  '500':
+    description: Internal server error
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            error:
+              type: string
+              example: Internal server error

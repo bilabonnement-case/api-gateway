@@ -23,14 +23,14 @@ jobs:
       uses: docker/login-action@v2
       with:
         registry: https://index.docker.io/v1/
-        username: ${{ secrets.AzureAppService_ContainerUsername_c02ad2efdea54e4daa224d1489f5151c }}
-        password: ${{ secrets.AzureAppService_ContainerPassword_f90a6c59a0a348fea1d3ca89d0b63771 }}
+        username: ${{ secrets.AzureAppService_ContainerUsername_ce4ef208dd5046498b3323090830d5e2 }}
+        password: ${{ secrets.AzureAppService_ContainerPassword_631aebc732464b4e938b81f1f174ba3a }}
 
     - name: Build and push container image to registry
       uses: docker/build-push-action@v3
       with:
         push: true
-        tags: index.docker.io/${{ secrets.AzureAppService_ContainerUsername_c02ad2efdea54e4daa224d1489f5151c }}/birklauritzen/api-gateway:${{ github.sha }}
+        tags: index.docker.io/${{ secrets.AzureAppService_ContainerUsername_ce4ef208dd5046498b3323090830d5e2 }}/birklauritzen/api-gateway:${{ github.sha }}
         file: ./Dockerfile
 
   deploy:
@@ -47,5 +47,5 @@ jobs:
       with:
         app-name: 'bilabonnement'
         slot-name: 'production'
-        publish-profile: ${{ secrets.AzureAppService_PublishProfile_7b1e05bac86c4e728bd16bafc8030a35 }}
-        images: 'index.docker.io/${{ secrets.AzureAppService_ContainerUsername_c02ad2efdea54e4daa224d1489f5151c }}/birklauritzen/api-gateway:${{ github.sha }}'
+        publish-profile: ${{ secrets.AzureAppService_PublishProfile_f0f5cb34a42a4e92998b06f7fb5792c1 }}
+        images: 'index.docker.io/${{ secrets.AzureAppService_ContainerUsername_ce4ef208dd5046498b3323090830d5e2 }}/birklauritzen/api-gateway:${{ github.sha }}'

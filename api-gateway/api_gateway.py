@@ -13,11 +13,11 @@ CORS(app, resources={r"/*": {"origins": "*"}})  # Use "*" for local dev or speci
 
 # Base URLs for microservices
 MICROSERVICES = {
-    "abonnement": "https://abonnement-service-dcdtaafbcdecdzgb.northeurope-01.azurewebsites.net",
-    "faktura": "https://faktura-service-afhzcfcgbtdjfbg0.northeurope-01.azurewebsites.net",
+    "abonnement": "https://abonnement-service-dcdtaafbcdecdzgb.northeurope-01.azurewebsites.net/",
+    "faktura": "https://faktura-service-afhzcfcgbtdjfbg0.northeurope-01.azurewebsites.net/",
     "fleet": "https://fleet-service-e2hzghc4b8ake2gm.northeurope-01.azurewebsites.net/",
     "kunde": "https://kunde-service-fhguhvbva6anfvfw.northeurope-01.azurewebsites.net/",
-    "skade": "https://skade-service.azurewebsites.net"
+    "skade": "https://skade-service-h9e9g6d4eab5cheh.northeurope-01.azurewebsites.net/"
 }
 
 # Helper funktion til at sende requests videre

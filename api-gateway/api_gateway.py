@@ -9,7 +9,7 @@ swagger = Swagger(app)
 
 # Base URLs for microservices
 MICROSERVICES = {
-    "abonnement": "http://abonnement-service:5001",
+    "abonnement": "https://abonnement-service-dcdtaafbcdecdzgb.northeurope-01.azurewebsites.net",
     "faktura": "http://faktura-service:5002",
     "fleet": "http://fleet-service:5003",
     "kunde": "http://kunde-service:5004",

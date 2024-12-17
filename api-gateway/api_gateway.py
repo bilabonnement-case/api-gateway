@@ -15,7 +15,7 @@ CORS(app, resources={r"/*": {"origins": "*"}})  # Use "*" for local dev or speci
 MICROSERVICES = {
     "abonnement": "https://abonnement-service-dcdtaafbcdecdzgb.northeurope-01.azurewebsites.net",
     "faktura": "https://faktura-service-afhzcfcgbtdjfbg0.northeurope-01.azurewebsites.net",
-    "fleet": "https://fleet-service.azurewebsites.net",
+    "fleet": "https://fleet-service-e2hzghc4b8ake2gm.northeurope-01.azurewebsites.net/",
     "kunde": "https://kunde-service-fhguhvbva6anfvfw.northeurope-01.azurewebsites.net/",
     "skade": "https://skade-service.azurewebsites.net"
 }

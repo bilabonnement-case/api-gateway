@@ -16,7 +16,7 @@ MICROSERVICES = {
     "abonnement": "https://abonnement-service-dcdtaafbcdecdzgb.northeurope-01.azurewebsites.net",
     "faktura": "https://faktura-service-afhzcfcgbtdjfbg0.northeurope-01.azurewebsites.net",
     "fleet": "https://fleet-service.azurewebsites.net",
-    "kunde": "https://kunde-service.azurewebsites.net",
+    "kunde": "https://kunde-service-fhguhvbva6anfvfw.northeurope-01.azurewebsites.net/",
     "skade": "https://skade-service.azurewebsites.net"
 }
 

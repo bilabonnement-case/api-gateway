@@ -13,7 +13,7 @@ CORS(app, resources={r"/*": {"origins": "*"}})  # Use "*" for local dev or speci
 
 # Base URLs for microservices
 MICROSERVICES = {
-    "abonnement": "https://abonnement-service.azurewebsites.net",
+    "abonnement": "https://abonnement-service-dcdtaafbcdecdzgb.northeurope-01.azurewebsites.net",
     "faktura": "https://faktura-service.azurewebsites.net",
     "fleet": "https://fleet-service.azurewebsites.net",
     "kunde": "https://kunde-service.azurewebsites.net",

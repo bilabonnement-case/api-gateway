@@ -2,10 +2,14 @@ from flask import Flask, jsonify, request
 import os
 from flasgger import Swagger, swag_from
 import requests
+from flask_cors import CORS  # Import CORS
 
 # Initialiser Flask og Flasgger
 app = Flask(__name__)
 swagger = Swagger(app)
+
+# Enable CORS for all routes and specific origins
+CORS(app, resources={r"/*": {"origins": "*"}})  # Use "*" for local dev or specific domains in production
 
 # Base URLs for microservices
 MICROSERVICES = {

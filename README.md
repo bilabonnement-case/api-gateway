@@ -40,11 +40,6 @@ Install the required dependencies using:
 Create a .env file in the root directory and specify the following:
 ```
 FLASK_DEBUG=1
-MICROSERVICES_ABONNEMENT_URL=https://abonnement-service.example.com
-MICROSERVICES_FAKTURA_URL=https://faktura-service.example.com
-MICROSERVICES_FLEET_URL=https://fleet-service.example.com
-MICROSERVICES_KUNDE_URL=https://kunde-service.example.com
-MICROSERVICES_SKADE_URL=https://skade-service.example.com
 ```
 
 ## Getting Started
@@ -62,6 +57,69 @@ Run the Flask application:
 The gateway will be available at http://127.0.0.1:8000.
 
 To deploy updates to Azure, push changes to the main branch, and the Azure Web App deployment will trigger automatically via GitHub Actions.
+
+## Docker
+
+### Build and Run with Docker
+
+To containerize and run the API Gateway, follow these steps:
+
+	1.	Build the Docker Image
+
+    Navigate to the root directory of the project (where the Dockerfile is located) and run:
+```docker build -t api-gateway-service .```
+
+	2.	Run the Container
+```docker run -d -p 8000:8000 --env-file .env api-gateway-service```
+
+	•	-d: Runs the container in detached mode.
+	•	-p 8000:8000: Maps port 8000 of the container to port 8000 on the host machine.
+	•	--env-file .env: Loads environment variables from the .env file.
+
+The API Gateway will now be available at http://localhost:8000.
+
+## Docker-Compose (Optional for Multi-Service Deployment)
+
+To orchestrate and run the API Gateway alongside other microservices:
+	1.	docker-compose.yaml Example:
+```
+version: '3.8'
+services:
+  api-gateway:
+    build: .
+    ports:
+      - "8000:8000"
+    env_file: 
+      - .env
+    depends_on:
+      - abonnement-service
+      - faktura-service
+      - kunde-service
+      - fleet-service
+      - skade-service
+
+  abonnement-service:
+    image: birklauritzen/abonnement-service:latest
+    ports:
+      - "5001:5001"
+
+  faktura-service:
+    image: birklauritzen/faktura-service:latest
+    ports:
+      - "5002:5002"
+```
+	2.	Run with Docker Compose
+```docker-compose up -d```
+
+### Stop Containers
+```docker-compose down```
+
+## Pushing to Docker Hub (Optional)
+	1.	Tag the image:
+```docker tag api-gateway-service birklauritzen/api-gateway-service:latest```
+
+	2.	Push the image:
+```docker push birklauritzen/api-gateway-service:latest```
 
 ## API Endpoints
 

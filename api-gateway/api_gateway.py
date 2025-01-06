@@ -92,12 +92,12 @@ def home():
 def abonnement_create():
     return proxy_request("abonnement", "create_subscription")
 
-@app.route('/api/abonnement/get_subscription/abonnement_id', methods=['GET'])
+@app.route('/api/abonnement/get_subscription/', methods=['GET'])
 @swag_from('swagger/abonnement/proxy_get_subscription.yaml')
 def abonnement_get(abonnement_id):
     return proxy_request("abonnement", f"get_subscription/{abonnement_id}")
 
-@app.route('/api/abonnement/delete_subscription/abonnement_id', methods=['DELETE'])
+@app.route('/api/abonnement/delete_subscription/', methods=['DELETE'])
 @swag_from('swagger/abonnement/proxy_delete_subscription.yaml')
 def abonnement_delete(abonnement_id):
     return proxy_request("abonnement", f"delete_subscription/{abonnement_id}")
